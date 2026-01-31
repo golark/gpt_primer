@@ -1,10 +1,12 @@
 ## Developing a mental model for how GPTs work
 
-## 1 - Traditional Software vs Machine Learning
+#### Traditional Software vs Machine Learning
 :books: In traditional software, the rules are explicitly programmed by humans whereas in machine learning, the model learns patterns from data
 ![trad_sw_vs_ml.png](images/trad_sw_vs_ml.png)
 <br/><br/>
 
+
+#### An ML Model is a Mathematical Function
 :books: A Machine Learning Model is a mathematical function that maps inputs to outputs based on patterns learned from training data into model parameters. For instance below is the mathematical function for early GPT models from 2019
 ![GPT2_equation.png](images/GPT2_equation.png)
 <br/><br/>
