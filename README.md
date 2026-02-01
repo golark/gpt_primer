@@ -17,7 +17,7 @@
 :books: Machine Learning Development includes 2 main phases: Training and Inference, during training the model learns the parameters of the mathematical function ( such as the one above ), during inference the model uses the learned parameters to make predictions on new data
 :books: We first define a loss function which is a mathematical function which sets a target for the model![loss_func.png](images/loss_func.png)
 
-:books: Let's work through an example to illustrate an ML training process and the loss function
-:books: Our aim is to develop a model to distinguish between 3 types of Iris Species - https://en.wikipedia.org/wiki/Iris_(plant)
-:books: [iris_mlp.ipynb](notebooks/iris_mlp.ipynb)
+:books: Let's work through an example to illustrate an ML training process and the loss function. Our aim is to develop a model to distinguish between 3 types of Iris Species - https://en.wikipedia.org/wiki/Iris_(plant)
+<br/><br/>
+:books:  [iris_mlp.ipynb](notebooks/iris_mlp.ipynb)
 :books: Here is markdown version of the same if you dont intend to run the code: [iris_mlp.md](notebooks/iris_mlp.md) 
