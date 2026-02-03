@@ -25,11 +25,6 @@
 <details>
   <summary>Results</summary>
 
-  - Bullet points
-  - Tables
-  - Images
-</details>
-
 ## Problem Statement: Predict Iris Species ( Setosa, versicolor or virginica ) from Sepal length/width and Petal length/width
 
 
@@ -320,3 +315,5 @@ plt.show()
 
 
 ## We trained a model with over 98% accuracy on predicting Iris Species
+
+</details>
