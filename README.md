@@ -23,9 +23,9 @@
 - Notebook: [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Markdown version of the same if you dont intend to run the code: [iris_mlp.md](notebooks/iris_mlp.md) 
 
 <details>
-  <summary>Results</summary>
+  <summary>## Predicting Iris Species</summary>
 
-## Problem Statement: Predict Iris Species ( Setosa, versicolor or virginica ) from Sepal length/width and Petal length/width
+Problem Statement: Predict Iris Species ( Setosa, versicolor or virginica ) from Sepal length/width and Petal length/width
 
 
 
