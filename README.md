@@ -20,10 +20,10 @@
 :books: Let's work through an example to illustrate an ML training process and the loss function. Our aim is to develop a model to distinguish between 3 types of Iris Species - https://en.wikipedia.org/wiki/Iris_(plant)
 ![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
 <br/><br/>
-- Notebook: [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Markdown version of the same if you dont intend to run the code: [iris_mlp.md](notebooks/iris_mlp.md) 
+- If you would like to run the code please head to: [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Otherwise expand the section below for markdown version of the same 
 
 <details>
-  <summary>## Predicting Iris Species</summary>
+  <summary>Predicting Iris Species</summary>
 
 Problem Statement: Predict Iris Species ( Setosa, versicolor or virginica ) from Sepal length/width and Petal length/width
 
