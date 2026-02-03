@@ -36,13 +36,13 @@ display(Image(filename="../images/iris.png"))
 
 
     
-![png](iris_mlp_files/iris_mlp_1_0.png)
+![png](images/iris_mlp_1_0.png)
     
 
 
 
     
-![png](iris_mlp_files/iris_mlp_1_1.png)
+![png](images/iris_mlp_1_1.png)
     
 
 
@@ -208,7 +208,7 @@ next(zip(x_train, y_train))
 
 
     
-![png](iris_mlp_files/iris_mlp_9_0.png)
+![png](images/iris_mlp_9_0.png)
     
 
 
@@ -301,13 +301,13 @@ plt.show()
 
 
     
-![png](iris_mlp_files/iris_mlp_13_0.png)
+![png](images/iris_mlp_13_0.png)
     
 
 
 
     
-![png](iris_mlp_files/iris_mlp_13_1.png)
+![png](images/iris_mlp_13_1.png)
     
 
 
