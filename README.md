@@ -1035,7 +1035,8 @@ Previously, our character-level models relied on limited context—just the prev
 
 ![Manchester United Fan](images/man_u_fan.png)
 
+For instance "My" at the begining of the sentence is related to "he" from the beginning of second part. Similary, "Manchaster United" is related to "game" and "Old Trafford" - we need a way to map these relations back/forth within natural language.  
 
 GPTs essentially became popular because the "Attention Is All You Need" paper in 2017 ([Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)) demonstrated an effective method for mapping these dependencies in natural language.
 
-This is what we will next!
+This is what we will build next!
