@@ -24,6 +24,7 @@ This guide is designed to help you build an intuitive understanding of how Gener
 <br/><br/>
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
 
+
 **Problem:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
 
 
@@ -315,6 +316,7 @@ plt.show()
 
 #### Result: a model with over 98% accuracy at predicting Iris species
 
+
 So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
 
 ## Autoregressive Models
@@ -338,7 +340,66 @@ df.head()
 
 # . indicates end of a city name - this will be useful later when we are generating new city names and want to know when to stop
 df["city"] = df["city"] + '.'
+
+df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Encamp.</td>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Canillo.</td>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sharjah.</td>
+      <td>United Arab Emirates</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dubai.</td>
+      <td>United Arab Emirates</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Asadabad.</td>
+      <td>Afghanistan</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 
 ```python
@@ -414,68 +475,6 @@ vocab
 
 Lets define some utility functions to encode/decode city names to/from integer sequences
 where encode maps characters to integers and decode maps integers back to characters
-
-
-```python
-df.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>city</th>
-      <th>country</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Encamp.</td>
-      <td>Andorra</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Canillo.</td>
-      <td>Andorra</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Sharjah.</td>
-      <td>United Arab Emirates</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Dubai.</td>
-      <td>United Arab Emirates</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Asadabad.</td>
-      <td>Afghanistan</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 ```python
@@ -581,7 +580,7 @@ generate(BigramMLP(vocab_size), 's')
 
 
 
-    'sfmyqszbmbipvqvlwoblc'
+    'saotdpdoqfvspqtqtxsbw'
 
 
 
@@ -633,14 +632,14 @@ for step in range(steps):
 
 ```
 
-    step 0 | loss 3.2882
-    step 500 | loss 2.8779
-    step 1000 | loss 2.6168
-    step 1500 | loss 2.5690
-    step 2000 | loss 2.5155
-    step 2500 | loss 2.7143
-    step 3000 | loss 2.4291
-    step 3500 | loss 2.5338
+    step 0 | loss 3.3241
+    step 500 | loss 2.7337
+    step 1000 | loss 2.4776
+    step 1500 | loss 2.6678
+    step 2000 | loss 2.6061
+    step 2500 | loss 2.4493
+    step 3000 | loss 2.7860
+    step 3500 | loss 2.5585
 
 
 lets generate some city names using the trained model
@@ -653,7 +652,7 @@ generate(model, 's')
 
 
 
-    'stenez.'
+    'stospoy.'
 
 
 
@@ -694,7 +693,7 @@ class TrigramMLP(nn.Module):
 ```python
 X, Y = [], []
 
-for name in names:
+for name in df["city"]:
     name = name.lower()
     for a, b, c in zip(name[:-2], name[1:-1], name[2:]):
         X.append([stoi[a], stoi[b]])
@@ -730,6 +729,16 @@ for step in range(steps):
 
 ```
 
+    step 0 | loss 3.3092
+    step 500 | loss 2.5658
+    step 1000 | loss 2.5153
+    step 1500 | loss 2.4037
+    step 2000 | loss 2.4796
+    step 2500 | loss 2.3055
+    step 3000 | loss 2.4676
+    step 3500 | loss 2.4329
+
+
 notice that the loss is lower than the bigram model - this is because the model has more context to make better predictions
 
 
@@ -762,6 +771,13 @@ def generate(model, start_chars, max_len=20):
 ```python
 generate(model, 'ca')
 ```
+
+
+
+
+    'cabonela.'
+
+
 
 Not bad! The generated names sound a bit better, althought they are still not perfect
 
@@ -800,7 +816,7 @@ class FourGramMLP(nn.Module):
 ```python
 X, Y = [], []
 
-for name in names:
+for name in df["city"]:
     name = name.lower()
     if len(name) < 5:
         continue
@@ -841,6 +857,16 @@ for step in range(steps):
 
 ```
 
+    step 0 | loss 3.3005
+    step 500 | loss 2.1624
+    step 1000 | loss 2.0550
+    step 1500 | loss 1.9768
+    step 2000 | loss 2.0293
+    step 2500 | loss 2.1187
+    step 3000 | loss 1.8004
+    step 3500 | loss 1.9604
+
+
 looks like the loss has decreased even further - the model is able to make better predictions with more context
 
 
@@ -855,7 +881,6 @@ def generate(model, start_text, max_len=50):
         x = torch.tensor([context])  # (1, 4)
         logits = model(x)
         probs = F.softmax(logits[0], dim=-1)
-        print(probs)
 
         next_idx = torch.multinomial(probs, 1).item()
         next_char = itos[next_idx]
@@ -875,9 +900,17 @@ def generate(model, start_text, max_len=50):
 generate(model, 'casa')
 ```
 
+
+
+
+    'casanesti.'
+
+
+
 ok it seems like this is the best we can do with this simple MLP
 
-Now lets try an build a bigram model using a more traditional, rule-based software approach
+Now lets try an build a bigram model using a more traditional, rule-based software approach 
+This last section is optional but it is still cool to see how a simple bigram generator can be build with a few lines of code. 
 
 
 ```python
@@ -981,9 +1014,9 @@ for start in ['m', 's', 'k', 'n', 'v']:
 ```
 
     Generating city names using bigram dictionary:
-      'm' -> 'maire.'
-      's' -> 'selsad.'
-      'k' -> 'koviserntestina.'
-      'n' -> 'nirbalo.'
-      'v' -> 'vimaski.'
+      'm' -> 'mo.'
+      's' -> 'shudghanka.'
+      'k' -> 'kyuszein.'
+      'n' -> 'nyalllencamo.'
+      'v' -> 'vloy.'
 
