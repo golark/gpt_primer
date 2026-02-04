@@ -321,6 +321,9 @@ So far we have built a simple classification model to demonstrate the loss funct
 
 ## Autoregressive Models
 - It is important to understand how autoregressive models work as a concept before understanding GPTs
+You can find a full, runnable version of this n-gram modeling section in the following notebook:
+[ngram_name_generator.ipynb](notebooks/ngram_name_generator.ipynb)
+
 
 Start with building a simple autoregressive model that generates names resembling city names from around the world. We will feed city names from around the world into this model to train and expect it to learn character level dependencies - which is a likely next character if we are trying to generate new city names:
 
@@ -1020,3 +1023,17 @@ for start in ['m', 's', 'k', 'n', 'v']:
       'n' -> 'nyalllencamo.'
       'v' -> 'vloy.'
 
+
+Now let's shift from modeling at the character level to modeling at the token level (where tokens are, for now, equivalent to words). Instead of generating text letter by letter, we'll focus on generating sequences of words.
+
+Instead of city names, large language models like GPT are trained on vast, diverse datasets collected from sources such as Wikipedia, Reddit, books, articles, and more.  
+![](images/gpt_highlevel.png)
+
+Previously, our character-level models relied on limited context—just the previous 1, 2, or 3 characters—to predict the next character. However, in real language, the relationships between words and meanings span much longer and more complex dependencies.
+
+![Manchester United Fan](images/man_u_fan.png)
+
+
+GPTs essentially became popular because the "Attention Is All You Need" paper in 2017 ([Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)) demonstrated an effective method for mapping these dependencies in natural language.
+
+This is what we will next!
