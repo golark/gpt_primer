@@ -1,6 +1,8 @@
 ## Developing a mental model for how GPTs work
 This guide is designed to help you build an intuitive understanding of how Generative Pretrained Transformers (GPTs) work. We'll introduce just enough core Machine Learning concepts to clarify how these language models function inside. You can approach this either as a conceptual article—skipping the code—or as a hands-on tutorial in which you experiment with code snippets and even train your own model for roughly $5 (GPU rental).
 
+A quick read focusing just on the concepts (skipping code) takes about 30 minutes. If you choose to dig into the code sections for deeper understanding, set aside a couple of hours. Running all the code and training your own model will take about a weekend.
+
 #### Traditional Software vs Machine Learning
 :books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
 <br/><br/>
