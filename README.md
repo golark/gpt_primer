@@ -24,9 +24,6 @@ This guide is designed to help you build an intuitive understanding of how Gener
 <br/><br/>
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
 
-<details>
-  <summary>Predicting Iris Species</summary>
-
 **Problem:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
 
 
@@ -318,9 +315,675 @@ plt.show()
 
 #### Result: a model with over 98% accuracy at predicting Iris species
 
-</details>
-
 So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
 
 ## Autoregressive Models
-- 
+- It is important to understand how autoregressive models work as a concept before understanding GPTs
+
+Start with building a simple autoregressive model that generates names resembling city names from around the world. We will feed city names from around the world into this model to train and expect it to learn character level dependencies - which is a likely next character if we are trying to generate new city names:
+
+# ![letter_prediction.png](../images/letter_prediction.png)
+
+---------------------
+
+1. Lets create a generative model to generate new city names
+
+- Cities dataset consists of existing city names around the world - lets take a peek at the data
+
+
+```python
+import pandas as pd
+df = pd.read_csv("../dataset/cities_latin_alphabet.csv")
+df.head()
+
+# . indicates end of a city name - this will be useful later when we are generating new city names and want to know when to stop
+df["city"] = df["city"] + '.'
+```
+
+
+```python
+city_counts_by_country = df.groupby("country")["city"].count().sort_values(ascending=False).head(3)
+
+print(f'We have {len(df)} city names from {len(set(df["country"]))} countries')
+
+print('City Names by Country:')
+print(city_counts_by_country)
+```
+
+    We have 35320 city names from 185 countries
+    City Names by Country:
+    country
+    Russia           3768
+    Philippines      3161
+    United States    2929
+    Name: city, dtype: int64
+
+
+
+```python
+import string
+
+# vocab should be all characters from df[city] lowercase
+all_cities = df["city"].astype(str).str.lower()
+vocab = sorted(set("".join(all_cities)))
+vocab_size = len(vocab)
+
+print(f'we have a vocabulary of {vocab_size} characters')
+```
+
+    we have a vocabulary of 27 characters
+
+
+
+```python
+vocab
+```
+
+
+
+
+    ['.',
+     'a',
+     'b',
+     'c',
+     'd',
+     'e',
+     'f',
+     'g',
+     'h',
+     'i',
+     'j',
+     'k',
+     'l',
+     'm',
+     'n',
+     'o',
+     'p',
+     'q',
+     'r',
+     's',
+     't',
+     'u',
+     'v',
+     'w',
+     'x',
+     'y',
+     'z']
+
+
+
+Lets define some utility functions to encode/decode city names to/from integer sequences
+where encode maps characters to integers and decode maps integers back to characters
+
+
+```python
+df.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Encamp.</td>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Canillo.</td>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sharjah.</td>
+      <td>United Arab Emirates</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dubai.</td>
+      <td>United Arab Emirates</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Asadabad.</td>
+      <td>Afghanistan</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+stoi = {char: idx for idx, char in enumerate(vocab)}
+itos = {idx: char for char, idx in stoi.items()}
+
+def encode(s):
+    return [stoi[c] for c in s]
+def decode(ids):
+    return ''.join([itos[i] for i in ids])
+
+```
+
+example encode/decode
+
+
+```python
+moscow_ids = encode('moscow')
+print(f'encoded: {moscow_ids}')
+print(f'decoded: {decode(moscow_ids)}')
+```
+
+    encoded: [13, 15, 19, 3, 15, 23]
+    decoded: moscow
+
+
+Lets define a simple bigram model using a multi-layer perceptron (MLP)
+
+ℹ️ if the details of the model are unclear, dont worry - we will cover them in more detail on other notebooks
+
+
+```python
+import torch
+import torch.nn as nn
+
+class BigramMLP(nn.Module):
+    def __init__(self, vocab_size):
+        super().__init__()
+        self.embed = nn.Embedding(vocab_size, 128)
+        self.mlp = nn.Sequential(
+            nn.Linear(128, 256),
+            nn.ReLU(),
+            nn.Linear(256, 256),
+            nn.ReLU(),
+            nn.Linear(256, vocab_size)
+        )
+
+    def forward(self, x):
+        x = self.embed(x)   # (B, 128)
+        return self.mlp(x) # (B, V)
+```
+
+
+```python
+model= BigramMLP(vocab_size)
+print(model)
+```
+
+    BigramMLP(
+      (embed): Embedding(27, 128)
+      (mlp): Sequential(
+        (0): Linear(in_features=128, out_features=256, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=256, out_features=256, bias=True)
+        (3): ReLU()
+        (4): Linear(in_features=256, out_features=27, bias=True)
+      )
+    )
+
+
+lets define a function to generate city names using the the model
+
+
+
+```python
+import torch.nn.functional as F
+
+def generate(model, start_char, max_len=20):
+    idx = torch.tensor([stoi[start_char]])
+    out = start_char
+
+    for _ in range(max_len):
+        logits = model(idx)
+        probs = F.softmax(logits[-1], dim=-1)
+        next_idx = torch.multinomial(probs, 1).item()
+        next_char = itos[next_idx]
+        out += next_char
+        if next_char == '.':
+            break
+        idx = torch.tensor([next_idx])
+
+    return out
+
+```
+
+try and generate a city name  using untrained model
+
+
+```python
+generate(BigramMLP(vocab_size), 's')
+```
+
+
+
+
+    'sfmyqszbmbipvqvlwoblc'
+
+
+
+Doesnt sound like a city name, lets see if we can train the model to generate better city names
+
+First we need to prepare the training data for bigram model
+
+
+```python
+X, Y = [], []
+
+for name in df["city"]:
+    name = name.lower()
+    for a, b in zip(name[:-1], name[1:]):
+
+        X.append(stoi[a])
+        Y.append(stoi[b])
+
+X = torch.tensor(X)
+Y = torch.tensor(Y)
+```
+
+
+```python
+model = BigramMLP(vocab_size)
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=3e-3)
+
+```
+
+
+```python
+batch_size = 64
+steps = 4000
+
+for step in range(steps):
+    idx = torch.randint(0, len(X), (batch_size,))
+    xb = X[idx]
+    yb = Y[idx]
+
+    optimizer.zero_grad()
+    logits = model(xb)
+    loss = loss_fn(logits, yb)
+    loss.backward()
+    optimizer.step()
+
+    if step % 500 == 0:
+        print(f"step {step} | loss {loss.item():.4f}")
+
+```
+
+    step 0 | loss 3.2882
+    step 500 | loss 2.8779
+    step 1000 | loss 2.6168
+    step 1500 | loss 2.5690
+    step 2000 | loss 2.5155
+    step 2500 | loss 2.7143
+    step 3000 | loss 2.4291
+    step 3500 | loss 2.5338
+
+
+lets generate some city names using the trained model
+
+
+```python
+generate(model, 's')
+```
+
+
+
+
+    'stenez.'
+
+
+
+Sounds slightly more like a city name after training - but can we do better?
+
+- So far we have only used the previous character to predict the next character (bigram model) - what if we used the previous two characters (trigram model)?
+
+# Trigram
+
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class TrigramMLP(nn.Module):
+    def __init__(self, vocab_size):
+        super().__init__()
+        self.embed = nn.Embedding(vocab_size, 128)
+
+        self.mlp = nn.Sequential(
+            nn.Linear(128 * 2, 256),  # two embeddings concatenated
+            nn.ReLU(),
+            nn.Linear(256, 256),
+            nn.ReLU(),
+            nn.Linear(256, vocab_size)
+        )
+
+    def forward(self, x):
+        # x: (B, 2)
+        emb = self.embed(x)          # (B, 2, 128)
+        emb = emb.view(x.size(0), -1)  # (B, 256)
+        return self.mlp(emb)         # (B, V)
+
+```
+
+
+```python
+X, Y = [], []
+
+for name in names:
+    name = name.lower()
+    for a, b, c in zip(name[:-2], name[1:-1], name[2:]):
+        X.append([stoi[a], stoi[b]])
+        Y.append(stoi[c])
+
+X = torch.tensor(X)  # (N, 2)
+Y = torch.tensor(Y)  # (N,)
+
+```
+
+
+```python
+model = TrigramMLP(vocab_size)
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=3e-3)
+
+batch_size = 256
+steps = 4000
+
+for step in range(steps):
+    idx = torch.randint(0, len(X), (batch_size,))
+    xb = X[idx]   # (B, 2)
+    yb = Y[idx]   # (B,)
+
+    optimizer.zero_grad()
+    logits = model(xb)
+    loss = loss_fn(logits, yb)
+    loss.backward()
+    optimizer.step()
+
+    if step % 500 == 0:
+        print(f"step {step} | loss {loss.item():.4f}")
+
+```
+
+notice that the loss is lower than the bigram model - this is because the model has more context to make better predictions
+
+
+```python
+def generate(model, start_chars, max_len=20):
+    assert len(start_chars) == 2
+
+    idx = [stoi[start_chars[0]], stoi[start_chars[1]]]
+    out = start_chars
+
+    for _ in range(max_len):
+        x = torch.tensor([idx])  # (1, 2)
+        logits = model(x)
+        probs = F.softmax(logits[0], dim=-1)
+
+        next_idx = torch.multinomial(probs, 1).item()
+        next_char = itos[next_idx]
+
+        out += next_char
+        if next_char == '.':
+            break
+
+        idx = [idx[1], next_idx]  # slide window
+
+    return out
+
+```
+
+
+```python
+generate(model, 'ca')
+```
+
+Not bad! The generated names sound a bit better, althought they are still not perfect
+
+- Lets try increasing the context size even further to 4-grams
+
+# 4-gram
+
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class FourGramMLP(nn.Module):
+    def __init__(self, vocab_size, embed_dim=128):
+        super().__init__()
+        self.embed = nn.Embedding(vocab_size, embed_dim)
+
+        self.mlp = nn.Sequential(
+            nn.Linear(embed_dim * 4, 256),
+            nn.ReLU(),
+            nn.Linear(256, 256),
+            nn.ReLU(),
+            nn.Linear(256, vocab_size)
+        )
+
+    def forward(self, x):
+        # x: (B, 4)
+        emb = self.embed(x)            # (B, 4, 128)
+        emb = emb.view(x.size(0), -1)  # (B, 512)
+        return self.mlp(emb)           # (B, V)
+
+```
+
+
+```python
+X, Y = [], []
+
+for name in names:
+    name = name.lower()
+    if len(name) < 5:
+        continue
+
+    for a, b, c, d, e in zip(
+        name[:-4], name[1:-3], name[2:-2], name[3:-1], name[4:]
+    ):
+        X.append([stoi[a], stoi[b], stoi[c], stoi[d]])
+        Y.append(stoi[e])
+
+X = torch.tensor(X)  # (N, 4)
+Y = torch.tensor(Y)  # (N,)
+
+```
+
+
+```python
+model = FourGramMLP(vocab_size)
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=3e-3)
+
+batch_size = 256
+steps = 4000
+
+for step in range(steps):
+    idx = torch.randint(0, len(X), (batch_size,))
+    xb = X[idx]   # (B, 4)
+    yb = Y[idx]   # (B,)
+
+    optimizer.zero_grad()
+    logits = model(xb)
+    loss = loss_fn(logits, yb)
+    loss.backward()
+    optimizer.step()
+
+    if step % 500 == 0:
+        print(f"step {step} | loss {loss.item():.4f}")
+
+```
+
+looks like the loss has decreased even further - the model is able to make better predictions with more context
+
+
+```python
+def generate(model, start_text, max_len=50):
+    assert len(start_text) >= 4
+
+    context = [stoi[c] for c in start_text[-4:]]
+    out = start_text
+
+    for _ in range(max_len):
+        x = torch.tensor([context])  # (1, 4)
+        logits = model(x)
+        probs = F.softmax(logits[0], dim=-1)
+        print(probs)
+
+        next_idx = torch.multinomial(probs, 1).item()
+        next_char = itos[next_idx]
+
+        out += next_char
+        if next_char == '.':
+            break
+
+        context = context[1:] + [next_idx]
+
+    return out
+
+```
+
+
+```python
+generate(model, 'casa')
+```
+
+ok it seems like this is the best we can do with this simple MLP
+
+Now lets try an build a bigram model using a more traditional, rule-based software approach
+
+
+```python
+from collections import Counter
+
+# Count character bigrams from city names
+bigram_counts = Counter()
+
+for name in df["city"]:
+    name_lower = name.lower()
+    # Create bigrams by pairing consecutive characters
+    for i in range(len(name_lower) - 1):
+        bigram = name_lower[i:i+2]
+        bigram_counts[bigram] += 1
+
+# Display most common bigrams
+print(f"Total unique bigrams: {len(bigram_counts)}")
+print(f"\nTop 20 most common character bigrams:")
+for bigram, count in bigram_counts.most_common(20):
+    print(f"  '{bigram}': {count}")
+
+# Convert to dictionary for easy access
+bigram_dict = dict(bigram_counts)
+```
+
+    Total unique bigrams: 654
+    
+    Top 20 most common character bigrams:
+      'a.': 7293
+      'an': 6403
+      'ar': 4161
+      'n.': 4073
+      'al': 3514
+      'ra': 3446
+      'in': 3317
+      'e.': 3302
+      'i.': 3167
+      'la': 3113
+      'en': 2994
+      'o.': 2985
+      'er': 2835
+      'ma': 2778
+      'ng': 2666
+      'on': 2560
+      'ta': 2514
+      'na': 2496
+      'ha': 2351
+      'ba': 2326
+
+
+
+```python
+import random
+
+def generate_from_bigram_dict(start_char, max_len=20):
+    """
+    Generate text using bigram dictionary counts.
+    Selects next character based on bigram frequency.
+    """
+    if start_char not in vocab:
+        return f"Error: '{start_char}' not in vocabulary"
+    
+    output = start_char
+    current_char = start_char.lower()
+    
+    for _ in range(max_len):
+        # Find all bigrams that start with current_char
+        possible_bigrams = [(bigram, count) for bigram, count in bigram_dict.items() 
+                           if bigram[0] == current_char]
+        
+        if not possible_bigrams:
+            # No bigrams found starting with this character, stop
+            break
+        
+        # Extract next characters and their counts
+        next_chars = []
+        weights = []
+        for bigram, count in possible_bigrams:
+            next_char = bigram[1]
+            next_chars.append(next_char)
+            weights.append(count)
+        
+        # Weighted random selection based on bigram counts
+        next_char = random.choices(next_chars, weights=weights, k=1)[0]
+        output += next_char
+        
+        # Stop if we hit the end marker
+        if next_char == '.':
+            break
+        
+        current_char = next_char
+    
+    return output
+
+# Test generation
+print("Generating city names using bigram dictionary:")
+for start in ['m', 's', 'k', 'n', 'v']:
+    generated = generate_from_bigram_dict(start)
+    print(f"  '{start}' -> '{generated}'")
+
+```
+
+    Generating city names using bigram dictionary:
+      'm' -> 'maire.'
+      's' -> 'selsad.'
+      'k' -> 'koviserntestina.'
+      'n' -> 'nirbalo.'
+      'v' -> 'vimaski.'
+
