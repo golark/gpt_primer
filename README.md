@@ -1,4 +1,5 @@
 ## Developing a mental model for how GPTs work
+This guide is designed to help you build an intuitive understanding of how Generative Pretrained Transformers (GPTs) work. We'll introduce just enough core Machine Learning concepts to clarify how these language models function inside. You can approach this either as a conceptual article—skipping the code—or as a hands-on tutorial in which you experiment with code snippets and even train your own model for roughly $5 (GPU rental).
 
 #### Traditional Software vs Machine Learning
 :books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
@@ -315,8 +316,11 @@ plt.show()
     
 
 
-## Result: a model with over 98% accuracy at predicting Iris species
+#### Result: a model with over 98% accuracy at predicting Iris species
 
 </details>
 
 So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
+
+## Autoregressive Models
+- 
