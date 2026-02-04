@@ -1,31 +1,32 @@
 ## Developing a mental model for how GPTs work
 
 #### Traditional Software vs Machine Learning
-:books: In traditional software, the rules are explicitly programmed by humans whereas in machine learning, the model learns patterns from data
+:books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
 <br/><br/>
 ![trad_sw_vs_ml.png](images/trad_sw_vs_ml.png)
 <br/><br/>
 
 #### An ML Model is a Mathematical Function
-:books: A Machine Learning Model is a mathematical function that maps its inputs to outputs based on patterns learned during training. For instance below is the mathematical function for early GPT models from 2019
+:books: A machine learning model is a mathematical function that maps inputs to outputs based on patterns learned during training. Shown below is the mathematical function for early GPT models (2019).
 ![GPT2_equation.png](images/GPT2_equation.png)
-:books: The size of this mathematical function ( i.e number of parameters ) is a key factor in the model's capacity to learn complex patterns from data. Below graph illustrates the number of parameters of these mathematical functions over time. 
+:books: The size of this function—i.e., the number of parameters—is a key factor in the model’s capacity to learn complex patterns. The graph below shows how the number of parameters in these models has grown over time.
 ![model_size_growth.png](images/model_size_growth.png)
 
 
 ## How do we learn the parameters of these mathematical functions?
-:books: Machine Learning Development includes 2 main phases: Training and Inference, during training the model learns the parameters of the mathematical function ( such as the one above ), during inference the model uses the learned parameters to make predictions on new data
-:books: We first define a loss function which is a mathematical function which sets a target for the model![loss_func.png](images/loss_func.png)
+:books: ML development has two main phases: **training** and **inference**. During training, the model learns the parameters of the mathematical function (such as the one above). During inference, it uses those learned parameters to make predictions on new data.
+:books: We first define a **loss function**—a mathematical function that sets a target for the model.
+![loss_func.png](images/loss_func.png)
 
-:books: Let's work through an example to illustrate an ML training process and the loss function. Our aim is to develop a model to distinguish between 3 types of Iris Species - https://en.wikipedia.org/wiki/Iris_(plant)
+:books: Let’s work through an example to illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 ![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
 <br/><br/>
-- If you would like to run the code please head to: [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Otherwise expand the section below for markdown version of the same 
+- To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
 
 <details>
   <summary>Predicting Iris Species</summary>
 
-Problem Statement: Predict Iris Species ( Setosa, versicolor or virginica ) from Sepal length/width and Petal length/width
+**Problem:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
 
 
 
@@ -49,7 +50,7 @@ display(Image(filename="../images/iris.png"))
     
 
 
-Lets read the dataset
+Let's read the dataset.
 
 
 ```python
@@ -153,7 +154,7 @@ print(f'we have {len(df)} data points')
     we have 150 data points
 
 
-####  Lets Define our model
+#### Let's define our model
 
 
 ```python
@@ -173,7 +174,7 @@ class SimpleMLP(nn.Module):
         return self.net(x)
 ```
 
-Prepare the dataset
+Prepare the dataset.
 
 
 ```python
@@ -237,7 +238,7 @@ f_loss(logits, y_train[0])
 
 
 
-## training loop
+## Training loop
 
 
 ```python
@@ -314,6 +315,8 @@ plt.show()
     
 
 
-## We trained a model with over 98% accuracy on predicting Iris Species
+## Result: a model with over 98% accuracy at predicting Iris species
 
 </details>
+
+So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
