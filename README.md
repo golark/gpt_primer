@@ -225,29 +225,30 @@ class SimpleMLP(nn.Module):
 ```
 </details>
 
+Below is a graphical representation of our model
 ```
+
 Input Layer (4)
-x1  x2  x3  x4
- |   |   |   |
-  \  |   |  /
-   \ |   | /
-    \|   |/
-   [ Fully Connected ]
-        (4 → 16)
-            |
-         ReLU
-            |
-Hidden Layer (16 neurons)
-h1  h2  h3  ...  h16
-  \   |   |      /
-   \  |   |     /
-    \ |   |    /
-     \|   |   /
-   [ Fully Connected ]
-        (16 → 3)
-            |
-Output Layer (3)
-y1   y2   y3
+        x1  x2  x3  x4        --> where x1,x2,x3,x4 are sepal/petal lenght/width
+         |   |   |   |
+          \  |   |  /
+           \ |   | /
+            \|   |/
+       [ Fully Connected ]
+            (4 → 16)
+                |
+               ReLU           --> This is a simple non-linearity function to map non-linear relationship between input data and model output
+                |
+     h1  h2  h3  ...  h16     --> Hidden Layer (16 neurons)
+       \   |   |      /
+        \  |   |     /
+         \ |   |    /
+          \|   |   /
+        [ Fully Connected ]
+             (16 → 3)
+               |
+        Output Layer (3)
+           y1   y2   y3       --> where y1, y2, and y3 are our models predictions whether it is a setosa (y1), versicolor (y2) or virginica (y3). 
 ```
 
 
