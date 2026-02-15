@@ -69,6 +69,23 @@ Each upcoming section introduces one key concept at a time, with later sections 
   <img src="images/trad_sw_vs_ml.png" alt="Trad Software vs ML" width="400"/>
 </p>
 
+[Next Section](#concept-3---a-loss-function-defines-the-models-goal-during-training)
+
+<br/>
+
+<br/>
+
+&nbsp;
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;
+
+---
+
+<br/>
+
+
 ### Concept 3 - A Loss Function Defines the Model’s Goal During Training
 :books: ML development has two main phases: **training** and **inference**. During training, the model learns the parameters of the mathematical function (such as the one above). During inference, it uses those learned parameters to make predictions on new data.
 :books: We first define a **loss function**—a mathematical function that sets a target for the model.
