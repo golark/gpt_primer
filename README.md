@@ -147,6 +147,7 @@ There are 3 options to follow this tutorial
 
 
 Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
+<div align="center">
 
 <table border="1" class="dataframe">
   <thead>
@@ -197,6 +198,8 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
   </tbody>
 </table>
 
+</div>
+
 For each row we have sepal, petal height/length in cm and final column indicates which species it is. We will train our model using this dataset
 
 
@@ -230,9 +233,6 @@ Lets define our Loss Function - which we will use as a guide to improve our mode
 ```python
 f_loss = nn.CrossEntropyLoss()
 ```
-
-We now create a training loop
-
 
 <details>
 <summary>Training Loop (Click to expand)</summary>
