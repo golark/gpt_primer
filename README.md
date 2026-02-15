@@ -225,6 +225,7 @@ class SimpleMLP(nn.Module):
 ```
 </details>
 
+```
 Input Layer (4)
 x1  x2  x3  x4
  |   |   |   |
@@ -247,6 +248,7 @@ h1  h2  h3  ...  h16
             |
 Output Layer (3)
 y1   y2   y3
+```
 
 
 Lets define our Loss Function - which we will use as a guide to improve our models predictive performance. 
