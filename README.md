@@ -269,11 +269,13 @@ for epoch in range(200):
     
 ![png](images/iris_mlp_13_0.png)
     
-    
+Observe how the loss decreases and the accuracy increases during training.
 ![png](images/iris_mlp_13_1.png)
     
 
-#### Result: a model with over 98% accuracy at predicting Iris species, trained in a couple of seconds on modest hardware
+Finally we end up with a model with over 98% accuracy at predicting Iris species, trained in a couple of seconds on modest hardware.
+
+
 
 
 So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
