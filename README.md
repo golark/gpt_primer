@@ -278,14 +278,22 @@ for epoch in range(200):
     <img src="images/iris_mlp_13_1.png" alt="Training Accuracy" width="350"/>
 </div>
 
-    
 
 Finally we end up with a model with over 98% accuracy at predicting Iris species, trained in a couple of seconds on modest hardware.
 
+<br/>
 
+<br/>
 
+&nbsp;
 
-So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;
+
+---
+
+<br/>
 
 ## Autoregressive Models
 - It is important to understand how autoregressive models work as a concept before understanding GPTs
