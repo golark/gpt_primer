@@ -206,6 +206,9 @@ Now let's define our model. Recall from concept 1 above that a machine learning 
 
 Below code defines a model representing above mathematical function using a library called PyTorch
 
+<details>
+<summary>Show PyTorch Model Code</summary>
+
 ```python
 class SimpleMLP(nn.Module):
     def __init__(self, *args, **kwargs) -> None:
@@ -219,6 +222,7 @@ class SimpleMLP(nn.Module):
     def forward(self, x):
         return self.net(x)
 ```
+</details>
 
 Lets define our Loss Function - which we will use as a guide to improve our models predictive performance. 
 ```python
