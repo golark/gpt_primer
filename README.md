@@ -266,11 +266,13 @@ for epoch in range(200):
         time.sleep(0.5)
 
 ```
-    
-![png](images/iris_mlp_13_0.png)
-    
-Observe how the loss decreases and the accuracy increases during training.
-![png](images/iris_mlp_13_1.png)
+
+<div align="center">
+    <img src="images/iris_mlp_13_0.png" alt="Training Loss" width="350"/><br>
+    <em>Observe how the loss decreases and the accuracy increases during training.</em><br>
+    <img src="images/iris_mlp_13_1.png" alt="Training Accuracy" width="350"/>
+</div>
+
     
 
 Finally we end up with a model with over 98% accuracy at predicting Iris species, trained in a couple of seconds on modest hardware.
