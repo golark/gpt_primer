@@ -96,6 +96,22 @@ Each upcoming section introduces one key concept at a time, with later sections 
 #### @todo: expand on loss function ( maybe talk about forward /backward pass to minimize loss function)
 
 
+[Go to Tutorial 1: Predicting Iris Species](#tutorial-1---predicting-iris-species)
+
+<br/>
+
+<br/>
+
+&nbsp;
+
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;
+
+---
+
+<br/>
+
 ### Tutorial 1 - Predicting Iris Species
 **Let’s quickly recap the first three foundational concepts we’ve covered:**
 
