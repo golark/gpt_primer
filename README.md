@@ -11,7 +11,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 ### Table of Contents
 
 - [Concept 1 - An Machine Learning Model is a Mathematical Function](#concept-1---an-machine-learning-model-is-a-mathematical-function)
-- [Concept 2 - A Machine Learning Model Learns Patterns in Data](#concept-2---a-machine-learning-model-learns-patterns-in-data)
+- [Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)
 
 
 
@@ -26,6 +26,15 @@ Each upcoming section introduces one key concept at a time, with later sections 
 <p align="center">
   <img src="images/model_size_growth.png" alt="Model Size Growth" width="450"/>
 </p>
+
+
+
+
+
+
+
+
+
 
 
 ### Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase
