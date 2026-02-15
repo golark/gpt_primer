@@ -16,18 +16,19 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 
 ### Concept 1 - An Machine Learning Model is a Mathematical Function
-:books: A machine learning model is a mathematical function that maps inputs to outputs based on parameters of this function. Shown below is the mathematical function for early GPT models from 2019.
+:books: A machine learning model is a mathematical function that maps inputs to outputs based on parameters of a mathematical function. Shown below is the mathematical function for early GPT models from 2019.
 <p align="center">
   <img src="images/GPT2_equation.png" alt="GPT2 Equation" width="450"/>
 </p>
 
 
-
 :books: The size of this function—i.e., the number of parameters—is a key factor in the model’s capacity to learn complex patterns. The graph below shows how the number of parameters in these models has grown over time.
-![model_size_growth.png](images/model_size_growth.png)
+<p align="center">
+  <img src="images/model_size_growth.png" alt="Model Size Growth" width="450"/>
+</p>
 
 
-Concept 2 - A Machine Learning Model Learns Patterns in Data 
+### Concept 2 - A Machine Learning Model Learns Its Parameters During A Training Phase
 
 
 :books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
