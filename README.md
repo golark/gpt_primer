@@ -63,6 +63,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 
 :books: In traditional software, humans define the rules explicitly through programming. In machine learning, the model automatically discovers patterns within the data.
+
 :books: During the training phase, a machine learning model is exposed to large amounts of data and adjusts its parameters to learn these patterns. This training phase in machine learning is similar to the development phase in traditional software, when programmers formulate the explicit rules in code.
 <p align="center">
   <img src="images/trad_sw_vs_ml.png" alt="Trad Software vs ML" width="400"/>
