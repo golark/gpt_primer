@@ -1,4 +1,4 @@
-## Developing a mental model for how GPTs work
+## Developing a mental model for how Generative Pretrained Transformers work
 This guide is designed to help you build an intuitive understanding of how Generative Pretrained Transformers (GPTs) work. We'll introduce just enough core Machine Learning concepts to clarify how these language models function inside. You can approach this either as a conceptual article—skipping the code—or as a hands-on tutorial in which you experiment with code snippets and even train your own model for roughly $5 (GPU rental).
 
 A quick read focusing just on the concepts (skipping code) takes about 30 minutes. If you choose to dig into the code sections for deeper understanding, set aside a couple of hours. Running all the code and training your own model will take about a weekend.
@@ -37,8 +37,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
   <img src="images/trad_sw_vs_ml.png" alt="Trad Software vs ML" width="400"/>
 </p>
 
-#### An ML Model is a Mathematical Function
-## How do we learn the parameters of these mathematical functions?
+### Concept 3 - A Loss Function Defines the Model’s Goal During Training
 :books: ML development has two main phases: **training** and **inference**. During training, the model learns the parameters of the mathematical function (such as the one above). During inference, it uses those learned parameters to make predictions on new data.
 :books: We first define a **loss function**—a mathematical function that sets a target for the model.
 ![loss_func.png](images/loss_func.png)
