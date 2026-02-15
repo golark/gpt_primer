@@ -228,13 +228,12 @@ class SimpleMLP(nn.Module):
 Below is a graphical representation of our model
 ```
 
-Input Layer (4)
-        x1  x2  x3  x4        --> where x1,x2,x3,x4 are sepal/petal lenght/width
-         |   |   |   |
-          \  |   |  /
-           \ |   | /
-            \|   |/
-       [ Fully Connected ]
+         x1  x2  x3  x4        --> where x1,x2,x3,x4 are sepal/petal lenght/width
+          |   |   |   |
+           \  |   |  /
+            \ |   | /
+             \|   |/
+        [ Fully Connected ]
             (4 → 16)
                 |
                ReLU           --> This is a simple non-linearity function to map non-linear relationship between input data and model output
