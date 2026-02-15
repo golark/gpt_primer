@@ -93,8 +93,11 @@ Each upcoming section introduces one key concept at a time, with later sections 
   <img src="images/loss_func.png" alt="Loss Function" width="400"/>
 </p>
 
+#### @todo: expand on loss function ( maybe talk about forward /backward pass to minimize loss function)
 
-:books: Let’s work through an example to illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
+
+### Tutorial 1 - Predicting Iris Species
+:books: Let’s work through an example to   illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 ![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
 <br/><br/>
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
