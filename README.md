@@ -125,12 +125,20 @@ Each upcoming section introduces one key concept at a time, with later sections 
    Machine learning models need a goal to know what to learn; this is expressed mathematically through a **loss function**. The loss function measures how good (or bad) the model’s predictions are, guiding the model as it updates itself during training.
 
 
-:books: Let’s work through an example that demonstrates first 3 concepts we covered so far. Our goal is to train a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
+Let’s work through an example that demonstrates first 3 concepts we covered so far. 
+
+:books: Our goal is to train a model that distinguishes among three Iris species - a beautiful flowering plant - based on Petal and Sepal data —[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 
 <p align="center">
   <img src="images/iris_mlp.png" alt="Iris IO" width="350"/>
 </p>
 <br/><br/>
+
+There are 3 options to follow this tutorial
+1. Run the tutorial on google collab here:
+2. Local runtime on your machine ( you will need a jupyer notebok setup - instructions here ):
+3. Read on and skip running the code yourself
+
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
 
 
