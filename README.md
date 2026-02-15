@@ -145,53 +145,8 @@ There are 3 options to follow this tutorial
 **Problem:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
 
 
+Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
 
-
-```python
-from IPython.display import Image, display
-
-display(Image(filename="../images/iris_io.png"))
-display(Image(filename="../images/iris.png"))
-```
-
-
-    
-![png](images/iris_mlp_1_0.png)
-    
-
-
-
-    
-![png](images/iris_mlp_1_1.png)
-    
-
-
-Let's read the dataset.
-
-
-```python
-import pandas as pd
-df = pd.read_csv('../dataset/iris.csv')
-df.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -261,17 +216,7 @@ df.head()
 </div>
 
 
-
-
-```python
-print(f'we have {len(df)} data points')
-```
-
-    we have 150 data points
-
-
-#### Let's define our model
-
+- Let's define our model
 
 ```python
 import torch
