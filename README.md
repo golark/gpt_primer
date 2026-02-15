@@ -8,10 +8,20 @@ Although I’ve minimized prerequisites, it will help if you know some basic Pyt
 Each upcoming section introduces one key concept at a time, with later sections building upon these concepts.
 
 
-Concept 1 - An Machine Learning Model is a Mathematical Function
 
-:books: A machine learning model is a mathematical function that maps inputs to outputs based on parameters of this function. Shown below is the mathematical function for early GPT models from 2019.
-<p align="center">
+
+Concept 1 - An Machine Learning Model is a Mathematical Function
+## Table of Contents
+
+- [Developing a mental model for how GPTs work](#developing-a-mental-model-for-how-gpts-work)
+- [Concept 1 - An Machine Learning Model is a Mathematical Function](#concept-1---an-machine-learning-model-is-a-mathematical-function)
+- [Concept 2 - A Machine Learning Model Learns Patterns in Data](#concept-2---a-machine-learning-model-learns-patterns-in-data)
+- [How do we learn the parameters of these mathematical functions?](#how-do-we-learn-the-parameters-of-these-mathematical-functions)
+- [Iris Classification Example](#problem-predict-iris-species-setosa-versicolor-or-virginica-from-sepal-lengthwidth-and-petal-lengthwidth)
+- [Character-level Language Modeling](#character-level-language-modeling)
+- [Token-level Modeling and the Rise of Attention](#now-lets-shift-from-modeling-at-the-character-level-to-modeling-at-the-token-level-where-tokens-are-for-now-equivalent-to-words)
+
+Jump to any section to get started!
   <img src="images/GPT2_equation.png" alt="GPT2 Equation" width="450"/>
 </p>
 
