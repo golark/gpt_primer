@@ -3,19 +3,30 @@ This guide is designed to help you build an intuitive understanding of how Gener
 
 A quick read focusing just on the concepts (skipping code) takes about 30 minutes. If you choose to dig into the code sections for deeper understanding, set aside a couple of hours. Running all the code and training your own model will take about a weekend.
 
-#### Traditional Software vs Machine Learning
+Although I’ve minimized prerequisites, it will help if you know some basic Python and have a little familiarity with algebra and probability.
+
+Each upcoming section introduces one key concept at a time, with later sections building upon these concepts.
+
+
+Concept 1 - An Machine Learning Model is a Mathematical Function
+
+:books: A machine learning model is a mathematical function that maps inputs to outputs based on parameters of this function. Shown below is the mathematical function for early GPT models from 2019.
+![GPT2_equation.png](images/GPT2_equation.png)
+
+
+:books: The size of this function—i.e., the number of parameters—is a key factor in the model’s capacity to learn complex patterns. The graph below shows how the number of parameters in these models has grown over time.
+![model_size_growth.png](images/model_size_growth.png)
+
+
+Concept 2 - A Machine Learning Model Learns Patterns in Data 
+
+
 :books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
 <br/><br/>
 ![trad_sw_vs_ml.png](images/trad_sw_vs_ml.png)
 <br/><br/>
 
 #### An ML Model is a Mathematical Function
-:books: A machine learning model is a mathematical function that maps inputs to outputs based on patterns learned during training. Shown below is the mathematical function for early GPT models (2019).
-![GPT2_equation.png](images/GPT2_equation.png)
-:books: The size of this function—i.e., the number of parameters—is a key factor in the model’s capacity to learn complex patterns. The graph below shows how the number of parameters in these models has grown over time.
-![model_size_growth.png](images/model_size_growth.png)
-
-
 ## How do we learn the parameters of these mathematical functions?
 :books: ML development has two main phases: **training** and **inference**. During training, the model learns the parameters of the mathematical function (such as the one above). During inference, it uses those learned parameters to make predictions on new data.
 :books: We first define a **loss function**—a mathematical function that sets a target for the model.
