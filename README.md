@@ -108,15 +108,11 @@ Each upcoming section introduces one key concept at a time, with later sections 
 3. [**Loss Function Guides Learning**](#concept-3---a-loss-function-defines-the-models-goal-during-training)  
    Machine learning models need a goal to know what to learn; this is expressed mathematically through a **loss function**. The loss function measures how good (or bad) the model’s predictions are, guiding the model as it updates itself during training.
 
-Together, these concepts underpin the motivation and workflow for machine learning:  
-**Provide data → train a model → optimize it with a loss function → use the learned patterns for predictions!**
-
 
 :books: Let’s work through an example that demonstrates first 3 concepts we covered so far. Our goal is to train a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 
 <p align="center">
-  <img src="images/iris_io.png" alt="Iris IO" width="350"/>
-  <img src="images/iris.png" alt="Iris Illustration" width="350"/>
+  <img src="images/iris_mlp.png" alt="Iris IO" width="350"/>
 </p>
 <br/><br/>
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
