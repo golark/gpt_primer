@@ -12,7 +12,8 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 - [Concept 1 - An Machine Learning Model is a Mathematical Function](#concept-1---an-machine-learning-model-is-a-mathematical-function)
 - [Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)
-
+- [Concept 3 - The Transformer Architecture](#concept-3---the-transformer-architecture)
+- [Tutorial 1 - Training a Tiny Language Model from Scratch](#tutorial-1---training-a-tiny-language-model-from-scratch)
 
 
  
