@@ -208,7 +208,7 @@ Now let's define our model. Recall from concept 1 above that a machine learning 
 Below code defines a model representing above mathematical function using a library called PyTorch
 
 <details>
-<summary>Show PyTorch Model Code</summary>
+<summary>Code for Model Representing above Mathematical Equation using Pytorch</summary>
 
 ```python
 class SimpleMLP(nn.Module):
@@ -226,15 +226,16 @@ class SimpleMLP(nn.Module):
 </details>
 
 Lets define our Loss Function - which we will use as a guide to improve our models predictive performance. 
+
 ```python
-model = SimpleMLP()
-logits = model(x_train[0])
 f_loss = nn.CrossEntropyLoss()
-f_loss(logits, y_train[0])
 ```
 
 We now create a training loop
 
+
+<details>
+<summary>Training Loop (Click to expand)</summary>
 
 ```python
 model = SimpleMLP()
@@ -264,13 +265,12 @@ for epoch in range(200):
     loss.backward()
     optimizer.step()
 
-
     if epoch % 10 == 0:
         acc.append(accuracy(model, x_test, y_test))
         losses.append(loss.item())
         time.sleep(0.5)
-
 ```
+</details>
 
 <div align="center">
     <img src="images/iris_mlp_13_0.png" alt="Training Loss" width="350"/><br>
