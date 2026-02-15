@@ -42,7 +42,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 <br/>
 
-[Next: Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)
+[Next Section](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)
 
 <br/>
 
