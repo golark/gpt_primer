@@ -195,14 +195,18 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
     </tr>
   </tbody>
 </table>
-- For each row we have sepal, petal height/length in cm and final column indicates which species it is. We will train our model using this dataset
 
-- Let's define our model
+For each row we have sepal, petal height/length in cm and final column indicates which species it is. We will train our model using this dataset
+
+
+Now let's define our model. Recall from concept 1 above that a machine learning model is just a mathematical function. Here is the mathematical function we'll use for our Iris classifier — notice how much smaller and simpler it is compared to the GPT-2 equation shown earlier!
+<p align="center">
+  <img src="images/iris_model_eq.png" alt="Iris Model Equation" width="400"/>
+</p>
+
+Below code defines a model representing above mathematical function using a library called PyTorch
 
 ```python
-import torch
-import torch.nn as nn
-
 class SimpleMLP(nn.Module):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
