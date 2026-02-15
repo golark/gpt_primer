@@ -89,7 +89,9 @@ Each upcoming section introduces one key concept at a time, with later sections 
 ### Concept 3 - A Loss Function Defines the Model’s Goal During Training
 
 :books: The first step is to specify a **loss function**—a mathematical formula that guides the model toward its learning objective.
-![loss_func.png](images/loss_func.png)
+<p align="center">
+  <img src="images/loss_func.png" alt="Loss Function" width="400"/>
+</p>
 
 
 :books: Let’s work through an example to illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
