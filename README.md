@@ -136,14 +136,12 @@ Let’s work through an example that demonstrates first 3 concepts we covered so
 <br/><br/>
 
 There are 3 options to follow this tutorial
-1. Run the tutorial on google collab here:
-2. Local runtime on your machine ( you will need a jupyer notebok setup - instructions here ):
-3. Read on and skip running the code yourself
-
-- To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
+1. Run the tutorial on google collab here ( Recommended ): @todo
+2. Local runtime on your machine ( you will need a jupyer notebok setup - instructions here ): [iris_mlp.ipynb](notebooks/iris_mlp.ipynb)
+3. Simply Read on and skip running the code yourself
 
 
-**Problem:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
+**Problem Statement:** Predict Iris species (Setosa, Versicolor, or Virginica) from sepal length/width and petal length/width.
 
 
 Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
@@ -202,7 +200,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
 
 For each row we have sepal, petal height/length in cm and final column indicates which species it is. We will train our model using this dataset
 
-
 Now let's define our model. Recall from concept 1 above that a machine learning model is just a mathematical function. Here is the mathematical function we'll use for our Iris classifier — notice how much smaller and simpler it is compared to the GPT-2 equation shown earlier!
 <p align="center">
   <img src="images/iris_model_eq.png" alt="Iris Model Equation" width="400"/>
@@ -227,6 +224,30 @@ class SimpleMLP(nn.Module):
         return self.net(x)
 ```
 </details>
+
+Input Layer (4)
+x1  x2  x3  x4
+ |   |   |   |
+  \  |   |  /
+   \ |   | /
+    \|   |/
+   [ Fully Connected ]
+        (4 → 16)
+            |
+         ReLU
+            |
+Hidden Layer (16 neurons)
+h1  h2  h3  ...  h16
+  \   |   |      /
+   \  |   |     /
+    \ |   |    /
+     \|   |   /
+   [ Fully Connected ]
+        (16 → 3)
+            |
+Output Layer (3)
+y1   y2   y3
+
 
 Lets define our Loss Function - which we will use as a guide to improve our models predictive performance. 
 
