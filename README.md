@@ -150,9 +150,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>Id</th>
       <th>SepalLengthCm</th>
       <th>SepalWidthCm</th>
       <th>PetalLengthCm</th>
@@ -162,9 +159,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>1</td>
       <td>5.1</td>
       <td>3.5</td>
       <td>1.4</td>
@@ -172,9 +166,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
       <td>Iris-setosa</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>2</td>
       <td>4.9</td>
       <td>3.0</td>
       <td>1.4</td>
@@ -182,9 +173,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
       <td>Iris-setosa</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>3</td>
       <td>4.7</td>
       <td>3.2</td>
       <td>1.3</td>
@@ -192,9 +180,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
       <td>Iris-setosa</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>4</td>
       <td>4.6</td>
       <td>3.1</td>
       <td>1.5</td>
@@ -202,9 +187,6 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
       <td>Iris-setosa</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>5</td>
       <td>5.0</td>
       <td>3.6</td>
       <td>1.4</td>
@@ -213,8 +195,7 @@ Let's peek at our dataset ( only displaying first 5 data points out of 150 ).
     </tr>
   </tbody>
 </table>
-</div>
-
+- For each row we have sepal, petal height/length in cm and final column indicates which species it is. We will train our model using this dataset
 
 - Let's define our model
 
