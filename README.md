@@ -220,56 +220,7 @@ class SimpleMLP(nn.Module):
         return self.net(x)
 ```
 
-Prepare the dataset.
-
-
-```python
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-
-# Extract features and target
-features = df[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']].values
-labels = df['Species'].values
-
-# Encode labels to integers
-le = LabelEncoder()
-labels_encoded = le.fit_transform(labels)
-
-# Split dataset into train and test (let's use 80% train, 20% test)
-x_train, x_test, y_train, y_test = train_test_split(
-    features, labels_encoded, test_size=0.2, random_state=42, stratify=labels_encoded
-)
-
-# Convert to torch tensors
-x_train = torch.tensor(x_train, dtype=torch.float32)
-y_train = torch.tensor(y_train, dtype=torch.long)
-x_test = torch.tensor(x_test, dtype=torch.float32)
-y_test = torch.tensor(y_test, dtype=torch.long)
-```
-
-
-```python
-display(Image(filename="../images/iris_io.png"))
-
-# each row of x_train contains 4 numbers which correspond to Sepal Length/Width and Petal Length/Width
-# each row y_train contains a single number where 0=setosa, 1=versicolor and 2=virginica
-next(zip(x_train, y_train))
-```
-
-
-    
-![png](images/iris_mlp_9_0.png)
-    
-
-
-
-
-
-    (tensor([4.4000, 2.9000, 1.4000, 0.2000]), tensor(0))
-
-
-
-
+Lets define our Loss Function - which we will use as a guide to improve our models predictive performance. 
 ```python
 model = SimpleMLP()
 logits = model(x_train[0])
@@ -277,14 +228,7 @@ f_loss = nn.CrossEntropyLoss()
 f_loss(logits, y_train[0])
 ```
 
-
-
-
-    tensor(0.9625, grad_fn=<NllLossBackward0>)
-
-
-
-## Training loop
+We now create a training loop
 
 
 ```python
@@ -322,46 +266,14 @@ for epoch in range(200):
         time.sleep(0.5)
 
 ```
-
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-sns.set(style="darkgrid", rc={"axes.facecolor": (0, 0, 0, 0)})
-
-# Plot Loss
-plt.figure(figsize=(8, 4), facecolor="none")  # transparent figure background
-sns.lineplot(x=range(len(losses)), y=losses)
-plt.xlabel('Epoch (per 10)')
-plt.ylabel('Loss')
-plt.title('Training Loss Over Epochs')
-plt.gcf().patch.set_alpha(0.0)   # transparent figure background
-plt.show()
-
-# Plot Accuracy
-plt.figure(figsize=(8, 4), facecolor="none")  # transparent figure background
-sns.lineplot(x=range(len(acc)), y=acc)
-plt.xlabel('Epoch (per 10)')
-plt.ylabel('Accuracy')
-plt.title('Test Accuracy Over Epochs')
-plt.gcf().patch.set_alpha(0.0)   # transparent figure background
-plt.show()
-```
-
-
     
 ![png](images/iris_mlp_13_0.png)
     
-
-
-
     
 ![png](images/iris_mlp_13_1.png)
     
 
-
-#### Result: a model with over 98% accuracy at predicting Iris species
+#### Result: a model with over 98% accuracy at predicting Iris species, trained in a couple of seconds on modest hardware
 
 
 So far we have built a simple classification model to demonstrate the loss function, the forward and backward pass, and how optimization reduces loss.
