@@ -112,8 +112,12 @@ Together, these concepts underpin the motivation and workflow for machine learni
 **Provide data → train a model → optimize it with a loss function → use the learned patterns for predictions!**
 
 
-:books: Let’s work through an example to   illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
-![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
+:books: Let’s work through an example our goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
+
+<p align="center">
+  <img src="images/iris_io.png" alt="Iris IO" width="350"/>
+  <img src="images/iris.png" alt="Iris Illustration" width="350"/>
+</p>
 <br/><br/>
 - To run the code yourself, open [iris_mlp.ipynb](notebooks/iris_mlp.ipynb). Or expand the section below for a markdown version of the same content. 
 
