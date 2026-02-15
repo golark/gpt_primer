@@ -87,9 +87,10 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 
 ### Concept 3 - A Loss Function Defines the Model’s Goal During Training
-:books: ML development has two main phases: **training** and **inference**. During training, the model learns the parameters of the mathematical function (such as the one above). During inference, it uses those learned parameters to make predictions on new data.
-:books: We first define a **loss function**—a mathematical function that sets a target for the model.
+
+:books: The first step is to specify a **loss function**—a mathematical formula that guides the model toward its learning objective.
 ![loss_func.png](images/loss_func.png)
+
 
 :books: Let’s work through an example to illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 ![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
