@@ -17,7 +17,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 ### Concept 1 - An Machine Learning Model is a Mathematical Function
 
-Jump to any section to get started!
+<p>
   <img src="images/GPT2_equation.png" alt="GPT2 Equation" width="450"/>
 </p>
 
