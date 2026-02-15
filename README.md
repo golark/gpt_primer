@@ -97,6 +97,21 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 
 ### Tutorial 1 - Predicting Iris Species
+**Let’s quickly recap the first three foundational concepts we’ve covered:**
+
+1. **Data Instead of Explicit Rules**  
+   In traditional software, programs use rules written by humans to produce answers from inputs. In machine learning, instead of providing explicit rules, we provide lots of example data, letting the computer figure out the rules for itself.
+
+2. **Model Learns Patterns From Data**  
+   A machine learning model “learns” by adjusting its internal parameters during training. Given enough data, the model automatically discovers patterns and relationships—no human-crafted rules required!
+
+3. **Loss Function Guides Learning**  
+   Machine learning models need a goal to know what to learn; this is expressed mathematically through a **loss function**. The loss function measures how good (or bad) the model’s predictions are, guiding the model as it updates itself during training.
+
+Together, these concepts underpin the motivation and workflow for machine learning:  
+**Provide data → train a model → optimize it with a loss function → use the learned patterns for predictions!**
+
+
 :books: Let’s work through an example to   illustrate the ML training process and the role of the loss function. The goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 ![iris_io.png](images/iris_io.png)![iris.png](images/iris.png)
 <br/><br/>
