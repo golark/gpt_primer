@@ -16,7 +16,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 
 
 ### Concept 1 - An Machine Learning Model is a Mathematical Function
-
+:books: A machine learning model is a mathematical function that maps inputs to outputs based on parameters of this function. Shown below is the mathematical function for early GPT models from 2019.
 <p align="center">
   <img src="images/GPT2_equation.png" alt="GPT2 Equation" width="450"/>
 </p>
