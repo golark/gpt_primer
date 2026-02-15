@@ -99,20 +99,20 @@ Each upcoming section introduces one key concept at a time, with later sections 
 ### Tutorial 1 - Predicting Iris Species
 **Let’s quickly recap the first three foundational concepts we’ve covered:**
 
-1. **Data Instead of Explicit Rules**  
-   In traditional software, programs use rules written by humans to produce answers from inputs. In machine learning, instead of providing explicit rules, we provide lots of example data, letting the computer figure out the rules for itself.
+1. [**A Machine Learning Model Is a Mathematical Function**](#concept-1---a-machine-learning-model-is-a-mathematical-function)  
+   In traditional software, humans write rules that map inputs to outputs. In machine learning, a model is a mathematical function that takes input data and produces outputs. Instead of explicitly writing all the rules, we provide data, and the model learns the underlying mathematical relationships to make predictions.
 
-2. **Model Learns Patterns From Data**  
+2. [**Model Learns Patterns From Data**](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)  
    A machine learning model “learns” by adjusting its internal parameters during training. Given enough data, the model automatically discovers patterns and relationships—no human-crafted rules required!
 
-3. **Loss Function Guides Learning**  
+3. [**Loss Function Guides Learning**](#concept-3---a-loss-function-defines-the-models-goal-during-training)  
    Machine learning models need a goal to know what to learn; this is expressed mathematically through a **loss function**. The loss function measures how good (or bad) the model’s predictions are, guiding the model as it updates itself during training.
 
 Together, these concepts underpin the motivation and workflow for machine learning:  
 **Provide data → train a model → optimize it with a loss function → use the learned patterns for predictions!**
 
 
-:books: Let’s work through an example our goal is to build a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
+:books: Let’s work through an example that demonstrates first 3 concepts we covered so far. Our goal is to train a model that distinguishes among three Iris species—[Setosa, Versicolor, and Virginica](https://en.wikipedia.org/wiki/Iris_(plant)).
 
 <p align="center">
   <img src="images/iris_io.png" alt="Iris IO" width="350"/>
