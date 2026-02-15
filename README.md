@@ -28,13 +28,14 @@ Each upcoming section introduces one key concept at a time, with later sections 
 </p>
 
 
-### Concept 2 - A Machine Learning Model Learns Its Parameters During A Training Phase
+### Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase
 
 
-:books: In traditional software, rules are explicitly programmed by humans. In machine learning, the model learns patterns from data.
-<br/><br/>
-![trad_sw_vs_ml.png](images/trad_sw_vs_ml.png)
-<br/><br/>
+:books: In traditional software, humans define the rules explicitly through programming. In machine learning, the model automatically discovers patterns within the data.
+:books: During the training phase, a machine learning model is exposed to large amounts of data and adjusts its parameters to learn these patterns. This training phase in machine learning is similar to the development phase in traditional software, when programmers formulate the explicit rules in code.
+<p align="center">
+  <img src="images/trad_sw_vs_ml.png" alt="Trad Software vs ML" width="400"/>
+</p>
 
 #### An ML Model is a Mathematical Function
 ## How do we learn the parameters of these mathematical functions?
