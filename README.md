@@ -341,14 +341,14 @@ P(xₜ | x₁, x₂, ..., xₜ₋₁)
 ```
 
 ---
+- Lets work through an example:
 
-#### Why One-Token-at-a-Time Works
+Assume we enter the below to a GPT:
+> "The sky"
 
-**1. It Matches How Language Flows**
+The model would first select one of the most probable continuation to "The Sky"; so the model could continue with "is" or "was" or "looked"...
 
-Language unfolds sequentially. Each word depends on what came earlier:
-
-> "The sky is" ⟶ likely next token: **"blue"**
+Lets Assume the model selects "is", then the model would be again run with input "The Sky is"
 
 After generating "blue", it becomes part of the context for the following prediction.
 
