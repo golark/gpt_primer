@@ -14,7 +14,7 @@ Each upcoming section introduces one key concept at a time, with later sections 
 - [Concept 2 - A Machine Learning Model Learns Its Parameters During Training Phase](#concept-2---a-machine-learning-model-learns-its-parameters-during-training-phase)
 - [Concept 3 - The Transformer Architecture](#concept-3---the-transformer-architecture)
 - [Tutorial 1 - Training a Tiny Language Model from Scratch](#tutorial-1---training-a-tiny-language-model-from-scratch)
-- [Concept 4 - ]
+- [Concept 4 - Autoregressive Generation: Predict One Token at a Time](#concept-4--autoregressive-generation-predict-one-token-at-a-time)
 
  
 <br/>
@@ -340,8 +340,6 @@ The model learns the probability of the next token like so:
 P(xₜ | x₁, x₂, ..., xₜ₋₁)
 ```
 
-Each prediction **only depends on earlier tokens**—never future ones.
-
 ---
 
 #### Why One-Token-at-a-Time Works
@@ -353,23 +351,6 @@ Language unfolds sequentially. Each word depends on what came earlier:
 > "The sky is" ⟶ likely next token: **"blue"**
 
 After generating "blue", it becomes part of the context for the following prediction.
-
-**2. It Breaks a Hard Problem Into Smaller Pieces**
-
-Instead of modeling the probability of a full sentence at once, like:
-
-```
-P(full sentence)
-```
-
-
-
-we factor it into smaller, manageable pieces:
-
-P(x₁) × P(x₂ | x₁) × P(x₃ | x₁, x₂) × ...
-
-
-This decomposition is what makes large-scale language modeling feasible.
 
 - It is important to understand how autoregressive models work as a concept before understanding GPTs
 You can find a full, runnable version of this n-gram modeling section in the following notebook:
